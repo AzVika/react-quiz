@@ -19,7 +19,7 @@ class Auth extends Component {
 				value: '',
 				type: 'email',
 				label: 'Email',
-				errorMessage: 'Введите корректный email',
+				errorMessage: 'Введіть коректний email',
 				valid: false,
 				touched: false,
 				validation: {
@@ -31,7 +31,7 @@ class Auth extends Component {
 				value: '',
 				type: 'password',
 				label: 'Пароль',
-				errorMessage: 'Введите корректный пароль',
+				errorMessage: 'Введіть коректний пароль',
 				valid: false,
 				touched: false,
 				validation: {
@@ -44,7 +44,7 @@ class Auth extends Component {
 
 	loginHangler = () => {
 
-		this.props.auth (
+		this.props.auth(
 			this.state.formControls.email.value,
 			this.state.formControls.password.value,
 			true
@@ -53,7 +53,7 @@ class Auth extends Component {
 
 	registerHangler = () => {
 
-		this.props.auth (
+		this.props.auth(
 			this.state.formControls.email.value,
 			this.state.formControls.password.value,
 			false
@@ -65,22 +65,22 @@ class Auth extends Component {
 		event.preventDefault();
 	}
 
-	validateControl (value, validation) {
-		if(!validation) {
+	validateControl(value, validation) {
+		if (!validation) {
 			return true;
 		}
 
 		let isValid = true;
 
-		if(validation.required) {
+		if (validation.required) {
 			isValid = value.trim() !== '' && isValid;
 		}
 
-		if(validation.email) {
+		if (validation.email) {
 			isValid = validateEmail(value) && isValid;
 		}
 
-		if(validation.minLength) {
+		if (validation.minLength) {
 			isValid = value.trim().length >= validation.minLength && isValid;
 		}
 
@@ -121,42 +121,44 @@ class Auth extends Component {
 					label={control.label}
 					errorMessage={control.errorMessage}
 					shouldValidate={!!control.validation}
-					onChange={event=> this.onChangeHangler(event, controlName)}
+					onChange={event => this.onChangeHangler(event, controlName)}
 				/>
 			)
 		});
 	}
 
 	render() {
-		return(
+		return (
 			<div className={classes.Auth}>
 				<div>
-					<h1>Авторизация</h1>
+					<h1>Авторизація</h1>
 
 					<form onSubmit={this.submitHengler} className={classes.AuthForm}>
-						
-						{ this.renderInputs() }
 
-						<Button 
+						{this.renderInputs()}
+
+						<Button
 							type="success"
 							onClick={this.loginHangler}
 							disabled={!this.state.isFormValid}
-						>Войти</Button>
+						>Увійти</Button>
 						<Button
 							type="primary"
 							onClick={this.registerHangler}
 							disabled={!this.state.isFormValid}
-						>Регистрация</Button>
+						>Реєстрація</Button>
 					</form>
-					<div>ЛОГИН: kakoytoemail2@mail.ru</div>
+					<div>ЛОГИН: testemail@urk.net</div>
 					<div>ПАРОЛЬ: 123456</div>
+					{/* <div>ЛОГИН: kakoytoemail2@mail.ru</div>
+					<div>ПАРОЛЬ: 123456</div> */}
 				</div>
 			</div>
 		)
 	}
 }
 
-function mapsDispatchToProps (dispatch) {
+function mapsDispatchToProps(dispatch) {
 	return {
 		auth: (email, password, isLogin) => dispatch(auth(email, password, isLogin))
 	}

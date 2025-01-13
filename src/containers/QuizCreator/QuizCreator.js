@@ -10,18 +10,18 @@ import classes from './QuizCreator.module.css';
 
 function createOptionControl(number) {
 	return createControl({
-		label: `Вариант ${number}`,
-		errorMessage: 'Значение не может быть пустым',
+		label: `Варіант ${number}`,
+		errorMessage: 'Значення не може бути порожнім',
 		id: number
-	}, {required: true})
+	}, { required: true })
 }
 
 function createFormControls() {
 	return {
 		question: createControl({
-			label: 'Введите вопрос',
-			errorMessage: 'Вопрос не может быть пустым'
-		}, {required: true}),
+			label: 'Введіть запитання',
+			errorMessage: 'Питання не може бути порожнім'
+		}, { required: true }),
 		option1: createOptionControl(1),
 		option2: createOptionControl(2),
 		option3: createOptionControl(3),
@@ -36,7 +36,7 @@ class QuizCreator extends Component {
 		rightAnswerId: 1,
 		formControls: createFormControls()
 	}
-	
+
 	submitHangler = event => {
 		event.preventDefault();
 	}
@@ -51,17 +51,17 @@ class QuizCreator extends Component {
 			id: this.props.quiz.length + 1,
 			rightAnswerId: this.state.rightAnswerId,
 			answers: [
-				{text: option1.value, id: option1.id},
-				{text: option2.value, id: option2.id},
-				{text: option3.value, id: option3.id},
-				{text: option4.value, id: option4.id}
+				{ text: option1.value, id: option1.id },
+				{ text: option2.value, id: option2.id },
+				{ text: option3.value, id: option3.id },
+				{ text: option4.value, id: option4.id }
 			]
 		};
 
 		this.props.createQuizQuestion(questionItem);
 
 		this.setState({
- 			isFormValid: false,
+			isFormValid: false,
 			rightAnswerId: 1,
 			formControls: createFormControls()
 		})
@@ -110,7 +110,7 @@ class QuizCreator extends Component {
 						errorMessage={control.errorMessage}
 						onChange={event => this.changeHangler(event.target.value, controlName)}
 					/>
-					{ index === 0 ? <hr /> : null}
+					{index === 0 ? <hr /> : null}
 				</Auxiliary>
 			)
 		});
@@ -124,34 +124,34 @@ class QuizCreator extends Component {
 
 	render() {
 		const select = <Select
-			label="Выбирите правильный ответ"
+			label="Виберіть правильну відповідь"
 			value={this.state.rightAnswerId}
 			onChange={this.selectChangeHangler}
 			options={[
-				{text: 1, value: 1},
-				{text: 2, value: 2},
-				{text: 3, value: 3},
-				{text: 4, value: 4}
+				{ text: 1, value: 1 },
+				{ text: 2, value: 2 },
+				{ text: 3, value: 3 },
+				{ text: 4, value: 4 }
 			]}
 		/>
 
-		return(
+		return (
 			<div className={classes.QuizCreator}>
 				<div>
-					<h1>Создание теста</h1>
+					<h1>Створення тесту</h1>
 
 					<form onSubmit={this.submitHangler}>
 
-						{ this.renderControls() }
+						{this.renderControls()}
 
-						{ select }
+						{select}
 
 						<Button
 							type="primary"
 							onClick={this.addQuestionHangler}
 							disabled={!this.state.isFormValid}
 						>
-							Добавить вопрос
+							Додати питання
 						</Button>
 
 						<Button
@@ -159,7 +159,7 @@ class QuizCreator extends Component {
 							onClick={this.createQuizHangler}
 							disabled={this.props.quiz.length === 0}
 						>
-							Создать тест
+							Створити тест
 						</Button>
 					</form>
 				</div>

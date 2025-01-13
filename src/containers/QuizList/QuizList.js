@@ -7,7 +7,7 @@ import { fetchQuizes } from '../../store/actions/quiz';
 
 class QuizList extends Component {
 
-	renderQuizes () {
+	renderQuizes() {
 		return this.props.quizes.map(quiz => {
 			return (
 				<li
@@ -27,20 +27,20 @@ class QuizList extends Component {
 	}
 
 	render() {
-		return(
+		return (
 			<div className={classes.QuizList}>
 				<div>
-					<h1>Список тестов</h1>
+					<h1>Список тестів</h1>
 
 					{
 						this.props.loading && this.props.quizes.length !== 0
-						? <Loader />
-						: <ul>
-							{this.renderQuizes()}
-						  </ul>
+							? <Loader />
+							: <ul>
+								{this.renderQuizes()}
+							</ul>
 					}
 
-					
+
 				</div>
 			</div>
 		)

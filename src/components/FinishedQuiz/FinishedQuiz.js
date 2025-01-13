@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const FinishedQuiz = props => {
 	const successCount = Object.keys(props.results).reduce((total, key) => {
-		if(props.results[key] === 'success') {
+		if (props.results[key] === 'success') {
 			total++;
 		}
 		return total;
@@ -14,7 +14,7 @@ const FinishedQuiz = props => {
 	return (
 		<div className={classes.FinishedQuiz}>
 			<ul>
-				{ 
+				{
 					props.quiz.map((quizItem, index) => {
 
 						const cls = [
@@ -33,15 +33,15 @@ const FinishedQuiz = props => {
 				}
 			</ul>
 
-			<p>Правильно {successCount} из {props.quiz.length}</p>
+			<p>Правильно {successCount} з {props.quiz.length}</p>
 
 			<div>
 				<Button
 					onClick={props.onRetry}
 					type="primary"
-				>Повторить</Button>
+				>Повторити</Button>
 				<Link to="/">
-					<Button type="success">Перейти в список тестов</Button>
+					<Button type="success">Перейти до списку тестів</Button>
 				</Link>
 			</div>
 		</div>

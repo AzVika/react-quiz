@@ -14,7 +14,7 @@ class Drawer extends Component {
 		return links.map((link, index) => {
 			return (
 				<li key={index} >
-					<NavLink 
+					<NavLink
 						to={link.to}
 						exact={link.exact}
 						activeClassName={classes.active}
@@ -29,36 +29,36 @@ class Drawer extends Component {
 
 	render() {
 
-		const cls=[classes.Drawer];
+		const cls = [classes.Drawer];
 
-		if(!this.props.isOpen) {
+		if (!this.props.isOpen) {
 			cls.push(classes.close);
 		}
 
 		const links = [
-			{to: '/', label: 'Список', exact: true}	
+			{ to: '/', label: 'Список', exact: true }
 		];
 
 		if (this.props.isAuthenticated) {
-			links.push({to: '/quizCreator', label: 'Создать тест', exact: false});
-			links.push({to: '/logout', label: 'Выйти', exact: false});
+			links.push({ to: '/quizCreator', label: 'Створити тест', exact: false });
+			links.push({ to: '/logout', label: 'Вийти', exact: false });
 		} else {
-			links.push({to: '/auth', label: 'Авторизация', exact: false});
+			links.push({ to: '/auth', label: 'Авторизація', exact: false });
 		}
 
 		return (
 			<>
 				<nav className={cls.join(' ')}>
 					<ul>
-						{ this.renderLinks(links) }
+						{this.renderLinks(links)}
 					</ul>
 				</nav>
-				{ this.props.isOpen ? <Backdrop onClick={this.props.onClose} /> : null }
-				 
+				{this.props.isOpen ? <Backdrop onClick={this.props.onClose} /> : null}
+
 			</>
 		)
 	}
-	
+
 }
 
 export default Drawer;
